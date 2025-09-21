@@ -693,7 +693,15 @@
                 
             </div>
             <div class="hero-image">
-                <div class="profile-placeholder" aria-label="Profile placeholder">JB</div>
+                <img
+                    src="profile.jpg"
+                    alt="Portrait of Jat Barmi"
+                    class="profile-img"
+                    loading="eager"
+                    decoding="async"
+                    onerror="this.style.display='none'; var fb=document.getElementById('profile-fallback'); if(fb) fb.style.display='flex';"
+                />
+                <div id="profile-fallback" class="profile-placeholder" aria-label="Profile placeholder" style="display:none;">JB</div>
             </div>
         </div>
     </section>
