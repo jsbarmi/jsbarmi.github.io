@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jat Barmi - Strategic Product Leader</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            color: #333; 
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .header-section {
+            min-height: 45vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #e3f2fd 100%);
+            color: #2c3e50;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #e0e6ed;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            width: 100%;
+        }
+        
+        .hero-text {
+            flex: 1;
+            text-align: left;
+        }
+        
+        .hero-image {
+            flex: 0 0 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .profile-img {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid rgba(102, 126, 234, 0.2);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.15);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* Placeholder avatar when no image is present */
+        .profile-placeholder {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            border: 6px solid rgba(102, 126, 234, 0.2);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.15);
+            background: linear-gradient(135deg, #e9ecef, #f8f9fa);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #667eea;
+            font-weight: 800;
+            font-size: 3rem;
+            letter-spacing: 2px;
+            user-select: none;
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.25);
+            border-color: rgba(102, 126, 234, 0.4);
+        }
+        
+        .hero-title {
+            font-size: 3.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+            text-shadow: none;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            color: #667eea;
+            font-weight: 500;
+        }
+        
+        .hero-description {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            color: #555;
+            line-height: 1.6;
+            text-align: justify;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 35px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .cta-button:hover {
+            background: linear-gradient(135deg, #5a6fd8, #6a4190);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .main-content {
+            background: white;
+        }
+        
+        .section {
+            padding: 35px 0;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #2c3e50;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .skill-category {
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 2px solid;
+            box-shadow: 0 3px 12px rgba(102, 126, 234, 0.15);
+            transition: all 0.4s ease;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .skill-category:nth-child(1) { border-color: #ff6b6b; }
+        .skill-category:nth-child(2) { border-color: #4ecdc4; }
+        .skill-category:nth-child(3) { border-color: #feca57; }
+        
+        .skill-category:hover {
+            transform: translateY(-8px) scale(1.1);
+            height: auto;
+            min-height: 280px;
+            z-index: 10;
+            position: relative;
+            padding: 1.5rem;
+        }
+        
+        .skill-category:nth-child(1):hover { box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4); }
+        .skill-category:nth-child(2):hover { box-shadow: 0 15px 40px rgba(78, 205, 196, 0.4); }
+        .skill-category:nth-child(3):hover { box-shadow: 0 15px 40px rgba(254, 202, 87, 0.4); }
+        
+        .skill-category h3 {
+            color: #2c3e50;
+            margin-bottom: 0.8rem;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .skill-list {
+            list-style: none;
+            flex: 1;
+            overflow: hidden;
+            max-height: 120px;
+            transition: all 0.4s ease;
+        }
+        
+        .skill-category:hover .skill-list {
+            max-height: 400px;
+            overflow: visible;
+        }
+        
+        .skill-list li {
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            color: #555;
+            font-size: 0.7rem;
+            line-height: 1.2;
+            transition: font-size 0.4s ease;
+        }
+        
+        .skill-category:hover .skill-list li {
+            font-size: 0.95rem;
+            padding: 0.4rem 0;
+            line-height: 1.4;
+        }
+        
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .project-card {
+            background: linear-gradient(145deg, #ffffff 0%, #fafbfc 100%);
+            border-radius: 10px;
+            border: 1px solid;
+            box-shadow: 0 4px 15px rgba(118, 75, 162, 0.12);
+            overflow: hidden;
+            transition: all 0.4s ease;
+            height: 280px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-card:nth-child(1) { border-color: #ff6b6b; }
+        .project-card:nth-child(2) { border-color: #4ecdc4; }
+        .project-card:nth-child(3) { border-color: #45b7d1; }
+        .project-card:nth-child(4) { border-color: #96ceb4; }
+        .project-card:nth-child(5) { border-color: #feca57; }
+        .project-card:nth-child(6) { border-color: #ff9ff3; }
+        .project-card:nth-child(7) { border-color: #54a0ff; }
+        .project-card:nth-child(8) { border-color: #5f27cd; }
+        .project-card:nth-child(9) { border-color: #00d2d3; }
+        .project-card:nth-child(10) { border-color: #ff9f43; }
+        
+        .project-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+            height: auto;
+            min-height: 320px;
+            z-index: 10;
+            position: relative;
+        }
+        
+        .project-card:nth-child(1):hover { box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4); }
+        .project-card:nth-child(2):hover { box-shadow: 0 12px 35px rgba(78, 205, 196, 0.4); }
+        .project-card:nth-child(3):hover { box-shadow: 0 12px 35px rgba(69, 183, 209, 0.4); }
+        .project-card:nth-child(4):hover { box-shadow: 0 12px 35px rgba(150, 206, 180, 0.4); }
+        .project-card:nth-child(5):hover { box-shadow: 0 12px 35px rgba(254, 202, 87, 0.4); }
+        .project-card:nth-child(6):hover { box-shadow: 0 12px 35px rgba(255, 159, 243, 0.4); }
+        .project-card:nth-child(7):hover { box-shadow: 0 12px 35px rgba(84, 160, 255, 0.4); }
+        .project-card:nth-child(8):hover { box-shadow: 0 12px 35px rgba(95, 39, 205, 0.4); }
+        .project-card:nth-child(9):hover { box-shadow: 0 12px 35px rgba(0, 210, 211, 0.4); }
+        .project-card:nth-child(10):hover { box-shadow: 0 12px 35px rgba(255, 159, 67, 0.4); }
+        
+        .project-content {
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .project-title {
+            color: #2c3e50;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .project-description {
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            flex: 1;
+            overflow: hidden;
+            max-height: 180px;
+            transition: max-height 0.4s ease;
+        }
+        
+        .project-card:hover .project-description {
+            max-height: 500px;
+            overflow: visible;
+        }
+        
+        .project-company {
+            color: #667eea;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: auto;
+            flex-shrink: 0;
+        }
+        
+        .contact-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #e8f4fd 100%);
+            color: #2c3e50;
+            border-top: 1px solid #e0e6ed;
+        }
+        
+        .contact-section .section-title {
+            color: #2c3e50;
+        }
+        
+        .contact-section .section-title:after {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 1rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .contact-card:nth-child(1) { border-color: #667eea; }
+        .contact-card:nth-child(2) { border-color: #4ecdc4; }
+        .contact-card:nth-child(3) { border-color: #ff6b6b; }
+        .contact-card:nth-child(4) { border-color: #feca57; }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(145deg, #ffffff 0%, #f0f8ff 100%);
+        }
+        
+        .contact-card:nth-child(1):hover { 
+            border-color: #5a6fd8;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.25);
+        }
+        .contact-card:nth-child(2):hover { 
+            border-color: #45b8b0;
+            box-shadow: 0 8px 25px rgba(78, 205, 196, 0.25);
+        }
+        .contact-card:nth-child(3):hover { 
+            border-color: #ff5252;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.25);
+        }
+        .contact-card:nth-child(4):hover { 
+            border-color: #ffa726;
+            box-shadow: 0 8px 25px rgba(254, 202, 87, 0.25);
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .contact-card h3 {
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+            color: #2c3e50;
+        }
+        
+        .contact-card p {
+            margin-bottom: 0.8rem;
+            color: #666;
+            font-size: 0.8rem;
+        }
+        
+        .contact-link {
+            display: inline-block;
+            padding: 6px 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            border: none;
+            font-weight: 500;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+        }
+        
+        .contact-link:hover {
+            background: linear-gradient(135deg, #5a6fd8, #6a4190);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .contact-footer {
+            margin-top: 3rem;
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #e0e6ed;
+        }
+        
+        .contact-footer p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 900px;
+            height: 90vh;
+            max-height: 90vh;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        
+        .close {
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+            transition: opacity 0.3s ease;
+        }
+        
+        .close:hover {
+            opacity: 0.7;
+        }
+        
+        .modal-body {
+            padding: 0;
+            /* Take remaining space below header */
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .resume-viewer {
+            position: relative;
+            background: #f8f9fa;
+            /* Fill available space for the image */
+            flex: 1;
+            min-height: 0; /* allow flex item to shrink */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .resume-image {
+            /* Fit the full page within the viewport without scrolling */
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            object-fit: contain;
+            /* Blur the image to reduce readability */
+            filter: blur(4px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .page-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #ffffff;
+            border-top: 1px solid #eee;
+            /* Stay at the bottom via flex layout; no sticky needed */
+            flex-shrink: 0;
+        }
+        
+        .nav-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-width: 100px;
+        }
+        
+        .nav-button:hover:not(:disabled) {
+            background: linear-gradient(135deg, #5a6fd8, #6a4190);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .nav-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .page-indicator {
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .download-section {
+            padding: 20px;
+            text-align: center;
+            background: #ffffff;
+            border-top: 1px solid #eee;
+        }
+        
+        .download-link {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .download-link:hover {
+            background: linear-gradient(135deg, #45b8b0, #3d8f7d);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .resume-placeholder {
+            padding: 3rem 2rem;
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .placeholder-content h3 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .placeholder-content p {
+            color: #555;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .placeholder-content ul {
+            text-align: left;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        
+        .placeholder-content li {
+            color: #555;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+        }
+        
+        .placeholder-content a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .placeholder-content a:hover {
+            text-decoration: underline;
+        }
+        
+        .resume-fallback {
+            padding: 3rem 2rem;
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .resume-fallback p {
+            color: #555;
+            font-size: 1.2rem;
+        }
+        
+        .resume-fallback a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .resume-fallback a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content { 
+                flex-direction: column; 
+                text-align: center; 
+                gap: 2rem; 
+            }
+            .hero-text { text-align: center; }
+            .hero-image { flex: 0 0 auto; }
+            .profile-img { width: 200px; height: 200px; }
+            .hero-title { font-size: 2.4rem; }
+            .hero-subtitle { font-size: 1.2rem; }
+            .hero-description { text-align: center; }
+            .section-title { font-size: 1.8rem; }
+            .container { padding: 0 1rem; }
+            .section { padding: 40px 0; }
+            .header-section { min-height: auto; padding: 1.5rem 1rem; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .contact-card { padding: 1.5rem; }
+            .modal-content { 
+                width: 95%; 
+                margin: 5% auto;
+                height: 90vh;
+                max-height: 90vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="header-section">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Jat Barmi</h1>
+                <p class="hero-subtitle">Strategic Product Leader & AI Evangelist</p>
+                <p class="hero-description">Hello! I'm Jat Barmi, a Canadian citizen based in the Greater Toronto Area (GTA) with over 15 years of experience in Customer Success, Product, and Program Management across Mobile apps, OTT streaming, Broadcast engineering, and cloud technologies. I've worked with Quickplay, AWS Elemental, Evertz, Ericsson Canada, and Imagine Communications, managing complex programs and driving projects from concept to delivery.</p>
+                <p class="hero-description">As an AI evangelist, I believe in AI's potential to transform industries and unlock human growth. I live with a fitness mindset, seeing discipline and health as the foundation for success. With a go-getter attitude, I bring bold ideas to life — from building video encoders and streaming solutions to creating games in Unity and Unreal Engine.</p>
+                
+            </div>
+            <div class="hero-image">
+                <div class="profile-placeholder" aria-label="Profile placeholder">JB</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Skills Section -->
+        <section class="section" id="skills">
+            <div class="container">
+                <h2 class="section-title">My Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Technical Expertise</h3>
+                        <ul class="skill-list">
+                            <li>Video Compression: H264, HEVC, J2K</li>
+                            <li>OTT Streaming: HLS, DASH</li>
+                            <li>Dynamic Ad Insertion: SCTE-35, SSAI, CSAI</li>
+                            <li>OTT Delivery: Live, FAST, VOD, AVOD, TVOD</li>
+                            <li>Cloud & SaaS Solutions</li>
+                            <li>Geofencing, SRT</li>
+                            <li>JIRA, Confluence</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Leadership & Strategy</h3>
+                        <ul class="skill-list">
+                            <li>Product Management & Strategy</li>
+                            <li>Cross-Functional Team Leadership</li>
+                            <li>Agile & Waterfall Methodologies</li>
+                            <li>Account Management</li>
+                            <li>Relationship Building</li>
+                            <li>Customer Focus</li>
+                            <li>Communication</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Professional Qualities</h3>
+                        <ul class="skill-list">
+                            <li>Innovation & Problem Solving</li>
+                            <li>Profit-Driven Mindset</li>
+                            <li>Time Management</li>
+                            <li>Conflict Management</li>
+                            <li>Technology Enthusiast</li>
+                            <li>Strategic Thinking</li>
+                            <li>Results-Oriented</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="section" id="projects" style="background: #f8f9fa;">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3 class="project-title">Univision DAI Platform Launch</h3>
+                            <p class="project-description">Spearheaded a large-scale DAI ad-enabled implementation and launch for Univision across 18 TVE & DTC applications, including Roku, iOS, Android, tvOS, FireTV, and Chromecast for LIVE, VOD, and FAST channels. Delivered this complex project in record time — less than 50% of what a typical team would require.</p>
+                            <span class="project-company">Quickplay</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3 class="project-title">AWS Elemental Live Product Leadership</h3>
+                            <p class="project-description">Served as Product Manager for Elemental Live, a cornerstone product powering Amazon Prime's video infrastructure. Orchestrated cross-functional collaboration across engineering, sales, and executive teams while defining product roadmaps, managing full SDLC processes, and driving go-to-market strategies. Successfully secured multimillion-dollar projects through strategic RFP responses and market positioning.</p>
+                            <span class="project-company">AWS Elemental</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3 class="project-title">Sportsnet+ OTT Transformation</h3>
+                            <p class="project-description">Led the transformation of Sportsnet+ into a profit center, implementing DAI ad-enabled streaming across 18 TVE & DTC apps (Roku, iOS, Android, tvOS, FireTV, Chromecast) for LIVE, VOD, and FAST channels.</p>
+                            <span class="project-company">Quickplay</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3 class="project-title">Cloud-Native Video Processing</h3>
+                            <p class="project-description">Directed product strategy and roadmap for cloud-native, software-only, and FPGA-based video processing solutions, generating over $50M in annual revenue.</p>
+                            <span class="project-company">Evertz Microsystems</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3 class="project-title">Bell FibeTV OTT Launch</h3>
+                            <p class="project-description">Planned, designed, deployed, and launched Bell FibeTV OTT service, including 16 live channels and 40,000+ hours of VOD asset ingestion.</p>
+                            <span class="project-company">Ericsson Canada</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3 class="project-title">3rd Generation J2K CODEC</h3>
+                            <p class="project-description">Owned the conception, development, and launch of the widely accepted 3rd Generation J2K CODEC for broadcast applications.</p>
+                            <span class="project-company">Evertz Microsystems</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3 class="project-title">PiCiZu App</h3>
+                            <p class="project-description">A mobile puzzle game available on Android that challenges players with engaging gameplay and intuitive design, showcasing mobile game development skills.</p>
+                            <span class="project-company">Personal Project</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3 class="project-title">Text to Speech Project</h3>
+                            <p class="project-description">Built an advanced text-to-speech conversion system utilizing AI and natural language processing technologies.</p>
+                            <span class="project-company">Personal Project</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3 class="project-title">PDF to Word Converter</h3>
+                            <p class="project-description">Created a robust document conversion tool that seamlessly transforms PDF files to editable Word documents with high accuracy.</p>
+                            <span class="project-company">Personal Project</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3 class="project-title">AI-Driven Data Harvesting Platform</h3>
+                            <p class="project-description">Implemented AI-driven data harvesting tools to enhance targeted ad delivery, generating additional revenue through improved audience segmentation and advanced analytics.</p>
+                            <span class="project-company">Quickplay</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section contact-section">
+            <div class="container">
+                <h2 class="section-title">Contact Me</h2>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">📧</div>
+                        <h3>Email</h3>
+                        <p>jsbarmi2612@gmail.com</p>
+                        <a href="mailto:jsbarmi2612@gmail.com" class="contact-link">Send Email</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">💼</div>
+                        <h3>LinkedIn</h3>
+                        <p>Connect with me professionally</p>
+                        <a href="https://www.linkedin.com/in/jat-barmi-50b99221/" target="_blank" class="contact-link">View Profile</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">💻</div>
+                        <h3>GitHub</h3>
+                        <p>Check out my projects</p>
+                        <a href="https://github.com/jsbarmi" target="_blank" class="contact-link">View Code</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📱</div>
+                        <h3>Phone</h3>
+                        <p>Will be shared upon request</p>
+                        <a href="mailto:jsbarmi2612@gmail.com?subject=Phone Number Request&body=Hi Jat, I would like to request your phone number for:" class="contact-link">Send Email</a>
+                    </div>
+                </div>
+                <div class="contact-footer">
+                    <p>© 2025 Jat Barmi. All rights reserved.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Resume Modal -->
+    <div id="resumeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Resume - Jat Barmi</h2>
+                <span class="close" onclick="closeResumeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="resume-viewer">
+                    <div class="resume-fallback">
+                        <p>Resume is temporarily unavailable.</p>
+                    </div>
+                </div>
+                <div class="page-navigation">
+                    <button id="prevBtn" class="nav-button" onclick="previousPage()">← Previous</button>
+                    <span id="pageIndicator" class="page-indicator">No resume available</span>
+                    <button id="nextBtn" class="nav-button" onclick="nextPage()">Next →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 1;
+        // Images removed from repository; keep empty to disable viewer
+        const resumePages = [];
+        let totalPages = resumePages.length;
+
+        function openResumeModal() {
+            document.getElementById('resumeModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Reset to first page
+            currentPage = 1;
+            updateResumePage();
+        }
+
+        function closeResumeModal() {
+            document.getElementById('resumeModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function updateResumePage() {
+            const resumeImage = document.getElementById('resumeImage');
+            const pageIndicator = document.getElementById('pageIndicator');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            if (totalPages === 0) {
+                // No pages available
+                if (pageIndicator) pageIndicator.textContent = 'No resume available';
+                if (prevBtn) prevBtn.disabled = true;
+                if (nextBtn) nextBtn.disabled = true;
+                return;
+            }
+
+            // Update image source if element exists
+            if (resumeImage) {
+                resumeImage.src = resumePages[currentPage - 1];
+                resumeImage.alt = `Resume Page ${currentPage}`;
+            }
+
+            // Update page indicator
+            if (pageIndicator) pageIndicator.textContent = `Page ${currentPage} of ${totalPages}`;
+
+            // Update button states
+            if (prevBtn) prevBtn.disabled = currentPage === 1;
+            if (nextBtn) nextBtn.disabled = currentPage === totalPages;
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                updateResumePage();
+            }
+        }
+
+        function previousPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                updateResumePage();
+            }
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            var modal = document.getElementById('resumeModal');
+            if (event.target == modal) {
+                closeResumeModal();
+            }
+        }
+
+        // Close modal with Escape key and navigation with arrow keys
+        document.addEventListener('keydown', function(event) {
+            if (document.getElementById('resumeModal').style.display === 'block') {
+                switch(event.key) {
+                    case 'Escape':
+                        closeResumeModal();
+                        break;
+                    case 'ArrowLeft':
+                        previousPage();
+                        break;
+                    case 'ArrowRight':
+                        nextPage();
+                        break;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
