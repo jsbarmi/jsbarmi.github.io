@@ -1,0 +1,7 @@
+# Ignore legacy resume images and resume PDFs
+Jat_Barmi_Resume_page-*.jpg
+resume.pdf
+resume*.pdf
+image1.jpg
+image2.jpg
+image3.jpg
